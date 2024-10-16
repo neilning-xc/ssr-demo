@@ -7,7 +7,8 @@ module.exports = {
   externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, 'server-build'),
-    filename: 'server.js',
+    filename: 'index.js',
+    clean: true,
   },
   module: {
     rules: [
@@ -18,8 +19,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
+        exclude: /node_modules/,
         use: ['css-loader'],
-      }
+      },
     ],
   },
 };
