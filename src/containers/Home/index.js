@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-import { selectBookList, getBookList } from '../../store/bookSlice';
+import { selectBookList } from '../../store/bookSlice';
 
+import Search from '../../components/Search';
 import Layout from '../../Layout';
 
 import './index.css';
 
 const Book = ({ data }) => {
-  // console.log("🚀 ~ Book ~ data:", data)
   return (
     <div className='book'>
       <img src={data.cover} alt={data.title} />
@@ -20,16 +20,11 @@ const Book = ({ data }) => {
 
 function Home() {
   const bookList = useSelector(selectBookList);
-  console.log("🚀 ~ Home ~ bookList:", bookList)
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getBookList());
-  // }, []);
   
   return (
     <Layout>
       <div>
-        <h1>My React SSR App-Home</h1>
+        <Search>My React SSR App-Home</Search>
         <div className='book-list'>
           {
             bookList.map((book, index) => (

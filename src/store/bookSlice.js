@@ -10,11 +10,15 @@ export const bookSlice = createSlice({
     setBookList: (state, action) => {
       state.bookList = action.payload;
     },
+    setKeyword: (state, action) => {
+      state.keyword = action.payload;
+    },
   },
 });
 
 export const selectBookList = (state) => state.book.bookList;
-export const { setBookList } = bookSlice.actions;
+export const selectKeyword = (state) => state.book.keyword;
+export const { setBookList, setKeyword } = bookSlice.actions;
 
 export const getBookList = () => {
   return (dispatch, getState) => {

@@ -1,0 +1,48 @@
+.todo-add {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.todo-add input {
+  width: 300px;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.todo-add button {
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  font-size: 16px;
+  margin-left: 10px;
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+
+.todo-filter {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.todo-filter input {
+  margin: 0 5px 0 10px;
+}
+
+.todo-list .todo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.todo-list .todo h3 {
+  margin: 0;
+  padding: 0;
+}

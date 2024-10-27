@@ -6,7 +6,11 @@ import { Provider } from 'react-redux';
 
 import { makeStore } from '../src/store';
 import { setBookList } from '../src/store/bookSlice';
+import { setTodoList } from '../src/store/todoSlice';
 import Routers from '../src/Routers';
+
+import { searchBook, searchTodo } from './request';
+import { renderHtml } from './utils';
 
 const app = express();
 app.use(express.static('client-build'));
@@ -49,9 +53,16 @@ app.get('/', async (req, res) => {
   );
 });
 
+app.get('/todo', async (req, res) => {
+  const ssrStore = makeStore();
+  const data = await searchTodo();
+  ssrStore.dispatch(setTodoList(data));
+  res.send(renderHtml(res, req, ssrStore));
+});
+
 app.get('/api/bookList', async (req, res) => {
   const keyword = req.query.keyword || '刘慈欣';
-  const data = await fetch(`https://book-db-v1.saltyleo.com/?keyword=${keyword}`).then((res) => res.json());
+  const data = await searchBook(keyword);
   res.send(data);
 });
 

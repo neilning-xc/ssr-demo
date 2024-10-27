@@ -1,16 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import bookReducer from './bookSlice';
-
-// export default configureStore({
-//   reducer: {
-//     book: bookReducer,
-//   },
-// });
+import todoReducer from './todoSlice';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       book: bookReducer,
+      todo: todoReducer,
     },
   });
 }
@@ -21,6 +17,7 @@ export const makeClientStore = () => {
   return configureStore({
     reducer: {
       book: bookReducer,
+      todo: todoReducer,
     },
     preloadedState: defaultState,
   });

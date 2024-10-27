@@ -2,13 +2,13 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Home from './containers/Home';
-import About from './containers/About';
+import Todo from './containers/Todo';
 
 const Routers = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
+      <Route path="/todo" element={<Todo />} />
     </Routes>
   );
 };
