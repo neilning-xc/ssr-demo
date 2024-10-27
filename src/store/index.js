@@ -9,7 +9,7 @@ export const makeStore = () => {
       todo: todoReducer,
     },
   });
-}
+};
 
 export const makeClientStore = () => {
   const defaultState = window.context ? window.context.state : {};
@@ -21,6 +21,4 @@ export const makeClientStore = () => {
     },
     preloadedState: defaultState,
   });
-}
-
-
+};

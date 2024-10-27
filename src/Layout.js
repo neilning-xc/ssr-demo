@@ -8,16 +8,14 @@ const Layout = ({ children }) => {
       <header>
         <ul>
           <li>
-            <a href='/'>Home</a>
+            <a href="/">Home</a>
           </li>
           <li>
-            <a href='/todo'>Todo</a>
+            <a href="/todo">Todo</a>
           </li>
         </ul>
       </header>
-      <div className="main">
-        {children}
-      </div>
+      <div className="main">{children}</div>
     </div>
   );
 };

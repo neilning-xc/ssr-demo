@@ -1,5 +1,7 @@
 export const searchBook = (keyword) => {
-  return fetch(`https://book-db-v1.saltyleo.com/?keyword=${keyword}`).then((res) => res.json());
+  return fetch(`https://book-db-v1.saltyleo.com/?keyword=${keyword}`).then(
+    (res) => res.json(),
+  );
 };
 
 export const searchTodo = () => {

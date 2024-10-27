@@ -10,7 +10,7 @@ import './index.css';
 
 const Book = ({ data }) => {
   return (
-    <div className='book'>
+    <div className="book">
       <img src={data.cover} alt={data.title} />
       <h2>{data.title}</h2>
       <p>{data.author}</p>
@@ -20,17 +20,15 @@ const Book = ({ data }) => {
 
 function Home() {
   const bookList = useSelector(selectBookList);
-  
+
   return (
     <Layout>
       <div>
         <Search>My React SSR App-Home</Search>
-        <div className='book-list'>
-          {
-            bookList.map((book, index) => (
-              <Book key={index} data={book} />
-            ))
-          }
+        <div className="book-list">
+          {bookList.map((book, index) => (
+            <Book key={index} data={book} />
+          ))}
         </div>
       </div>
     </Layout>

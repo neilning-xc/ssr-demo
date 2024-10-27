@@ -1,13 +1,8 @@
 import express from 'express';
-import { renderToString } from 'react-dom/server';
-import React from 'react';
-import { StaticRouter } from 'react-router-dom/server';
-import { Provider } from 'react-redux';
 
 import { makeStore } from '../src/store';
 import { setBookList } from '../src/store/bookSlice';
 import { setTodoList } from '../src/store/todoSlice';
-import Routers from '../src/Routers';
 
 import { searchBook, searchTodo } from './request';
 import { renderHtml } from './utils';
@@ -17,40 +12,11 @@ app.use(express.static('client-build'));
 
 app.get('/', async (req, res) => {
   const ssrStore = makeStore();
-
   const state = ssrStore.getState();
   const keyword = state.book.keyword;
-  const data = await fetch(`https://book-db-v1.saltyleo.com/?keyword=${keyword}`)
-      .then((res) => {
-        return res.json();
-      });
+  const data = await searchBook(keyword);
   ssrStore.dispatch(setBookList(data));
-
-  const content = renderToString(
-    <Provider store={ssrStore}>
-      <StaticRouter location={req.url}>
-        <Routers />
-      </StaticRouter>
-     </Provider>
-  );
-
-  res.send(
-    `<html>
-      <head>
-        <title>My React App</title>
-        <link rel="stylesheet" href="/styles.css">
-        <script>
-          window.context = {
-            state: ${JSON.stringify (ssrStore.getState())}
-          }
-        </script>
-      </head>
-      <body>
-        <div id="app">${content}</div>
-        <script src="/bundle.js"></script>
-      </body>
-    </html>`,
-  );
+  res.send(renderHtml(res, req, ssrStore));
 });
 
 app.get('/todo', async (req, res) => {

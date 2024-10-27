@@ -31,8 +31,7 @@ export const getBookList = () => {
       .then((data) => {
         dispatch(setBookList(data));
       });
-  }
+  };
 };
 
 export default bookSlice.reducer;
-  

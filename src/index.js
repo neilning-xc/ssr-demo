@@ -16,7 +16,4 @@ const App = () => {
   );
 };
 
-hydrateRoot(
-  document.getElementById('app'),
-  <App />
-);
+hydrateRoot(document.getElementById('app'), <App />);

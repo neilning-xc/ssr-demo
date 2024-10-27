@@ -11,7 +11,7 @@ const Search = () => {
 
   const handleChange = (e) => {
     dispatch(setKeyword(e.target.value));
-  };  
+  };
 
   const handleClick = () => {
     if (keyword) {
@@ -20,11 +20,16 @@ const Search = () => {
   };
 
   return (
-    <div className='search-box'>
-      <input type="text" onChange={handleChange} value={keyword} placeholder="Search..." />
+    <div className="search-box">
+      <input
+        type="text"
+        onChange={handleChange}
+        value={keyword}
+        placeholder="Search..."
+      />
       <button onClick={handleClick}>Search</button>
     </div>
   );
-}
+};
 
 export default Search;

@@ -2,6 +2,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { Provider } from 'react-redux';
+
 import Routers from '../src/Routers';
 
 export const renderHtml = (res, req, ssrStore) => {
@@ -10,7 +11,7 @@ export const renderHtml = (res, req, ssrStore) => {
       <StaticRouter location={req.url}>
         <Routers />
       </StaticRouter>
-     </Provider>
+    </Provider>,
   );
 
   return `<html>
@@ -19,7 +20,7 @@ export const renderHtml = (res, req, ssrStore) => {
         <link rel="stylesheet" href="/styles.css">
         <script>
           window.context = {
-            state: ${JSON.stringify (ssrStore.getState())}
+            state: ${JSON.stringify(ssrStore.getState())}
           }
         </script>
       </head>
@@ -27,5 +28,5 @@ export const renderHtml = (res, req, ssrStore) => {
         <div id="app">${content}</div>
         <script src="/bundle.js"></script>
       </body>
-    </html>`
+    </html>`;
 };
