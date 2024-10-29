@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 
 import Routers from '../src/Routers';
 
-export const renderHtml = (res, req, ssrStore) => {
+export const renderHtml = (res, req, store) => {
   const content = renderToString(
-    <Provider store={ssrStore}>
+    <Provider store={store}>
       <StaticRouter location={req.url}>
         <Routers />
       </StaticRouter>
@@ -18,11 +18,7 @@ export const renderHtml = (res, req, ssrStore) => {
       <head>
         <title>My React App</title>
         <link rel="stylesheet" href="/styles.css">
-        <script>
-          window.context = {
-            state: ${JSON.stringify(ssrStore.getState())}
-          }
-        </script>
+        <script>window.INITIAL_STATE = ${JSON.stringify(store.getState())}</script>
       </head>
       <body>
         <div id="app">${content}</div>

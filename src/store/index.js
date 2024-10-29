@@ -12,7 +12,7 @@ export const makeStore = () => {
 };
 
 export const makeClientStore = () => {
-  const defaultState = window.context ? window.context.state : {};
+  const defaultState = window.INITIAL_STATE || {};
 
   return configureStore({
     reducer: {

@@ -24,7 +24,7 @@ function Home() {
   return (
     <Layout>
       <div>
-        <Search>My React SSR App-Home</Search>
+        <Search />
         <div className="book-list">
           {bookList.map((book, index) => (
             <Book key={index} data={book} />
