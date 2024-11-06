@@ -18,21 +18,11 @@ const Book = ({ data }) => {
   );
 };
 
-
-
-function Home() {
+const BookList = () => {
   const bookList = useSelector(selectBookList);
-
-  return (
-    <Layout>
-      <div>
-        <Search />
-        <Suspense fallback={<div>Loading...</div>}>
-        </Suspense>
-        
-      </div>
-    </Layout>
-  );
-}
-
-export default Home;
+  return <div className="book-list">
+    {bookList.map((book, index) => (
+      <Book key={index} data={book} />
+    ))}
+</div>
+};

@@ -12,11 +12,12 @@ app.use(express.static('client-build'));
 
 app.get('/', async (req, res) => {
   const ssrStore = makeStore();
-  const state = ssrStore.getState();
-  const keyword = state.book.keyword;
-  const data = await searchBook(keyword);
-  ssrStore.dispatch(setBookList(data));
-  res.send(renderHtml(res, req, ssrStore));
+  // const state = ssrStore.getState();
+  // const keyword = state.book.keyword;
+  // const data = await searchBook(keyword);
+  // ssrStore.dispatch(setBookList(data));
+  return renderHtml(res, req, ssrStore);
+  // res.send(renderHtml(res, req, ssrStore));
 });
 
 app.get('/todo', async (req, res) => {
