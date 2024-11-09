@@ -13,6 +13,9 @@ const Layout = ({ children }) => {
           <li>
             <a href="/todo">Todo</a>
           </li>
+          <li>
+            <a href="/stream">Stream</a>
+          </li>
         </ul>
       </header>
       <div className="main">{children}</div>

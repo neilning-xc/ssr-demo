@@ -13,7 +13,6 @@ export const makeStore = () => {
 
 export const makeClientStore = () => {
   const defaultState = window.INITIAL_STATE || {};
-
   return configureStore({
     reducer: {
       book: bookReducer,

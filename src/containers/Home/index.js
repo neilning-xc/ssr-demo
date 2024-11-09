@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectBookList } from '../../store/bookSlice';
@@ -18,8 +18,6 @@ const Book = ({ data }) => {
   );
 };
 
-
-
 function Home() {
   const bookList = useSelector(selectBookList);
 
@@ -27,9 +25,11 @@ function Home() {
     <Layout>
       <div>
         <Search />
-        <Suspense fallback={<div>Loading...</div>}>
-        </Suspense>
-        
+        <div className="book-list">
+          {bookList.map((book, index) => (
+            <Book key={index} data={book} />
+          ))}
+        </div>
       </div>
     </Layout>
   );

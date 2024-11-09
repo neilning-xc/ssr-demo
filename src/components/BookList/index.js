@@ -1,12 +1,14 @@
-import React, { Suspense } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 
-import { selectBookList } from '../../store/bookSlice';
+import { useEventEmitter } from '../../context';
 
-import Search from '../../components/Search';
-import Layout from '../../Layout';
-
-import './index.css';
+const getBookList = async (keyword) => {
+  const response = await fetch(
+    `https://book-db-v1.saltyleo.com/?keyword=${keyword}`,
+  );
+  return await response.json();
+};
 
 const Book = ({ data }) => {
   return (
@@ -19,10 +21,22 @@ const Book = ({ data }) => {
 };
 
 const BookList = () => {
-  const bookList = useSelector(selectBookList);
-  return <div className="book-list">
-    {bookList.map((book, index) => (
-      <Book key={index} data={book} />
-    ))}
-</div>
+  const query = useQuery({
+    queryKey: ['bookList'],
+    queryFn: () => getBookList('刘慈欣'),
+  });
+  const ee = useEventEmitter();
+  if (ee && query.data) {
+    ee.emit('updateState');
+  }
+
+  return (
+    <div className="book-list">
+      {query.data.map((book, index) => (
+        <Book key={index} data={book} />
+      ))}
+    </div>
+  );
 };
+
+export default BookList;

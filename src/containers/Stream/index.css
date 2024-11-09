@@ -1,0 +1,27 @@
+.album-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.album-list .album {
+  border-radius: 5px;
+  width: 150px;
+  margin: 10px;
+  border: 1px solid #ccc;
+}
+
+.album-list .album img {
+  border-radius: 5px 5px 0 0;
+  width: 150px;
+  height: 150px;
+}
+
+.album-list .album p {
+  width: 150px;
+  padding: 5px;
+  margin: 0;
+  white-space: break-spaces;
+  word-break: break-all;
+  box-sizing: border-box;
+}

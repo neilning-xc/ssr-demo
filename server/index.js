@@ -5,19 +5,18 @@ import { setBookList } from '../src/store/bookSlice';
 import { setTodoList } from '../src/store/todoSlice';
 
 import { searchBook, searchTodo } from './request';
-import { renderHtml } from './utils';
+import { renderHtml, renderStream } from './utils';
 
 const app = express();
 app.use(express.static('client-build'));
 
 app.get('/', async (req, res) => {
   const ssrStore = makeStore();
-  // const state = ssrStore.getState();
-  // const keyword = state.book.keyword;
-  // const data = await searchBook(keyword);
-  // ssrStore.dispatch(setBookList(data));
-  return renderHtml(res, req, ssrStore);
-  // res.send(renderHtml(res, req, ssrStore));
+  const state = ssrStore.getState();
+  const keyword = state.book.keyword;
+  const data = await searchBook(keyword);
+  ssrStore.dispatch(setBookList(data));
+  res.send(renderHtml(res, req, ssrStore));
 });
 
 app.get('/todo', async (req, res) => {
@@ -31,6 +30,10 @@ app.get('/api/bookList', async (req, res) => {
   const keyword = req.query.keyword || '刘慈欣';
   const data = await searchBook(keyword);
   res.send(data);
+});
+
+app.get('/stream', async (req, res) => {
+  return renderStream(res, req);
 });
 
 app.listen(3000, () => {
